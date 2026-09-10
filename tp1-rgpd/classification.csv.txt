@@ -1,0 +1,14 @@
+colonne;categorie;justification
+id;IND;Identifiant unique indirect
+nom, prenom;DIR;Identifie directement la personne
+email;DIR;Permet d'identifier et contacter directement
+code_postal;IND;Information géographique indirecte
+ip_connexion;IND;Trace technique indirecte
+id_cookie;IND;Identifiant technique indirect
+num_secu;IND;Numéro d'immatriculation indirect unique
+carte_bancaire;IND;Donnée financière rattachée indirectement
+commentaire_libre_1_Dupont;SENS;Santé (Fauteuil roulant)
+commentaire_libre_2_Nguyen;SENS;Religion (Pratique religieuse)
+commentaire_libre_3_Berthier;SENS;Syndicat (Délégué syndical)
+commentaire_libre_4_Lopes;NP;RAS (Aucune donnée personnelle)
+commentaire_libre_5_Fontaine;SENS;Santé (Traitement en cours)

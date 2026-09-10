@@ -1,0 +1,18 @@
+# Rapport d'Audit RGPD - MyCom
+
+## Réponses à l'Étape 2 : Analyse du dépôt
+ 2.1.a : Le fichier `config/.env` est anormal dans le suivi Git car c'est un fichier de configuration contenant des secrets en clair (mot de passe de base de données).
+ 2.2.a : Le fichier `data/export-clients.csv` a disparu de l'état actuel mais figure toujours dans l'historique.
+ 2.3.a et b :Le commit qui ajoute ce fichier suspect s'intitule "Ajoute un export clients..." (réalisé par Karim Bouaziz le 19-01-2026). Celui qui prétend le retirer s'intitule "Retire l'export clients..." (réalisé par Lea Moreau le 02-02-2026).
+2.4.a : La donnée "num_secu" est concernée par 2 commits (son ajout et son retrait apparent). La donnée "DB_PASSWORD" n'est concernée que par 1 seul commit, ce qui prouve que le mot de passe n'a jamais été retiré et est toujours présent.
+
+## Réponse à l'Étape 3 : Le jeu de test
+3.a : Le fichier `data/jeu-de-test.csv` ne contient aucune donnée personnelle. Il s'agit de données **anonymes** et **agrégées** (seulement des tranches d'âge et des volumes de réponses).
+
+## Réponses à l'Étape 4 : Problématique de l'effacement
+4.a : Appliquer le droit à l'effacement (Art. 17 RGPD) est techniquement très complexe car la donnée reste gravée dans l'historique immuable de Git. Il faudrait réécrire complètement l'historique du dépôt et forcer tous les collaborateurs à supprimer leurs clones locaux.
+4.b :Le message "Retire l'export clients" est trompeur car un `git rm` ne supprime le fichier que du répertoire de travail actuel, mais il n'efface en aucun cas la donnée de l'historique du dépôt.
+
+## Réponses à l'Étape 5 : Prévention
+5.a : Git ne propose plus le nouveau fichier d'export car le `.gitignore` mis en place empêche désormais son suivi.
+5.b : Non, le mot de passe n'est pas sorti de l'historique (le `.gitignore` protège l'avenir, pas le passé). Dans un cas réel, le secret est compromis : la seule mesure efficace est de générer un nouveau mot de passe directement sur le serveur, en plus de nettoyer l'historique Git.
